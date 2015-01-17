@@ -17,6 +17,9 @@
         <label>Please select a product&nbsp;</label>
         <asp:DropDownList ID="ddlProducts" runat="server" >
         </asp:DropDownList><br />
+        
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:HalloweenConnectionString %>" SelectCommand="SELECT [ProductID], [Name], [ShortDescription], [LongDescription], [ImageFile], [UnitPrice] FROM [Products] ORDER BY [Name]"></asp:SqlDataSource>
+
         <div id="productData">
             <asp:Label ID="lblName" runat="server"></asp:Label>
             <asp:Label ID="lblShortDescription" runat="server"></asp:Label>
