@@ -7,6 +7,11 @@ public partial class Order : System.Web.UI.Page
 {
     private Product selectedProduct;
 
+    /// <summary>
+    /// Handles the Load event of the Page control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, System.EventArgs e)
     {
         //bind drop-down list on first load
@@ -20,6 +25,10 @@ public partial class Order : System.Web.UI.Page
         this.imgProduct.ImageUrl = "Images/Products/" + this.selectedProduct.ImageFile;
     }
 
+    /// <summary>
+    /// Gets the selected product.
+    /// </summary>
+    /// <returns>The new product item</returns>
     private Product GetSelectedProduct()
     {
         //get row from SqlDataSource based on value in dropdown list
