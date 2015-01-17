@@ -1,13 +1,19 @@
-using System;
 using System.Diagnostics;
-using System.Security.Policy;
 
+/// <summary>
+/// Gets and sets item information.
+/// </summary>
+/// <author>Kathryn Browning</author>
+/// <version>January 17, 2015</version>
 public class Product
 {
 
     private string _productId;
     private string _name;
     private string _shortDescription;
+    private string _longDescription;
+    private decimal _unitPrice;
+    private string _imageFile;
 
     /// <summary>
     /// Gets or sets the product identifier.
@@ -20,7 +26,7 @@ public class Product
         get { return this._productId; }
         set
         {
-            Trace.Assert(value !=null, "Invalid Product ID");
+            Trace.Assert(value !=null, "Invalid Product ID of Item");
             this._productId = value;
         }
     }
@@ -42,9 +48,15 @@ public class Product
 
     }
 
+    /// <summary>
+    /// Gets or sets the short description.
+    /// </summary>
+    /// <value>
+    /// The short description.
+    /// </value>
     public string ShortDescription
     {
-        get { return _shortDescription; }
+        get { return this._shortDescription; }
         set
         {
             Trace.Assert(value != null, "Invalid Short Description of Item."); 
@@ -52,9 +64,52 @@ public class Product
         }
     }
 
+    /// <summary>
+    /// Gets or sets the long description.
+    /// </summary>
+    /// <value>
+    /// The long description.
+    /// </value>
+    public string LongDescription
+    {
+        get { return this._longDescription; }
+        set
+        {
+            Trace.Assert(value != null, "Invalid Long Description of Item.");
+            this._longDescription = value;
+        }
+    }
 
 
-    public string LongDescription { get; set; }
-    public decimal UnitPrice { get; set; }
-    public string ImageFile { get; set; }
+    /// <summary>
+    /// Gets or sets the unit price.
+    /// </summary>
+    /// <value>
+    /// The unit price.
+    /// </value>
+    public decimal UnitPrice
+    {
+        get { return this._unitPrice; }
+        set
+        {
+            Trace.Assert(true, "Invalid Unit Price of Item.");
+            this._unitPrice = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the image file.
+    /// </summary>
+    /// <value>
+    /// The image file.
+    /// </value>
+    public string ImageFile
+    {
+        get { return this._imageFile; }
+        set
+        {
+            Trace.Assert(value != null, "Invalid Image File of Item.");
+            this._imageFile = value;
+        }
+    }
 }
