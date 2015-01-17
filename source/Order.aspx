@@ -34,15 +34,17 @@
             <asp:Label ID="lblUnitPrice" runat="server"></asp:Label>
             <label id="lblQuantity">Quantity&nbsp;</label>
             <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="validator"
+                <asp:RequiredFieldValidator ID="rfvTextQuantity" CssClass="validator"
                     runat="server" ControlToValidate="txtQuantity" Display="Dynamic" 
                     ErrorMessage="Quantity is a required field."></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" CssClass="validator" 
+                <asp:RangeValidator ID="rvTextQuantity" runat="server" CssClass="validator" 
                     ControlToValidate="txtQuantity" Display="Dynamic" 
                     ErrorMessage="Quantity must range from 1 to 500."
                     MaximumValue="500" MinimumValue="1" Type="Integer"></asp:RangeValidator><br />
-            <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" OnClick="btnAdd_Click" />
-            <asp:Button ID="btnCart" runat="server" Text="Go to Cart" CausesValidation="False" PostBackUrl="~/Cart.aspx" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" 
+                OnClick="btnAdd_Click" />
+            <asp:Button ID="btnCart" runat="server" Text="Go to Cart" 
+                CausesValidation="False" PostBackUrl="~/Cart.aspx" />
         </div>
         <asp:Image ID="imgProduct" runat="server" />
         
