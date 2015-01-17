@@ -41,7 +41,7 @@
                     ControlToValidate="txtQuantity" Display="Dynamic" 
                     ErrorMessage="Quantity must range from 1 to 500."
                     MaximumValue="500" MinimumValue="1" Type="Integer"></asp:RangeValidator><br />
-            <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" OnClick="btnAdd_Click" />
             <asp:Button ID="btnCart" runat="server" Text="Go to Cart" CausesValidation="False" PostBackUrl="~/Cart.aspx" />
         </div>
         <asp:Image ID="imgProduct" runat="server" />
