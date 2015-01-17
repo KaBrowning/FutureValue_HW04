@@ -15,10 +15,17 @@
     <section>
     <form id="form1" runat="server">
         <label>Please select a product&nbsp;</label>
-        <asp:DropDownList ID="ddlProducts" runat="server" >
+        <asp:DropDownList ID="ddlProducts" runat="server" 
+            AutoPostBack="True" DataSourceID="SqlDataSource" 
+            DataTextField="Name" DataValueField="ProductID" >
         </asp:DropDownList><br />
         
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:HalloweenConnectionString %>" SelectCommand="SELECT [ProductID], [Name], [ShortDescription], [LongDescription], [ImageFile], [UnitPrice] FROM [Products] ORDER BY [Name]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:HalloweenConnectionString %>" 
+            SelectCommand="SELECT [ProductID], [Name], [ShortDescription], 
+            [LongDescription], [ImageFile], [UnitPrice] 
+            FROM [Products] ORDER BY [Name]">
+        </asp:SqlDataSource>
 
         <div id="productData">
             <asp:Label ID="lblName" runat="server"></asp:Label>
