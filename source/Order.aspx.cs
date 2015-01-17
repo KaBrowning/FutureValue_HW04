@@ -19,8 +19,6 @@ public partial class Order : Page
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-        //bind drop-down list on first load
-        //get and show product on every load
         if (!IsPostBack) this.ddlProducts.DataBind();
         this._selectedProduct = this.GetSelectedProduct();
         this.lblName.Text = this._selectedProduct.Name;
@@ -36,15 +34,17 @@ public partial class Order : Page
     /// <returns>The new product item</returns>
     private Product GetSelectedProduct()
     {
-        //get row from SqlDataSource based on value in dropdown list
         var productsTable = (DataView)
             this.SqlDataSource.Select(DataSourceSelectArguments.Empty);
+        if (productsTable == null)
+        {
+            return null;
+        }
         productsTable.RowFilter = string.Format("ProductID = '{0}'",
             this.ddlProducts.SelectedValue);
         var row = productsTable[0];
-
-        //create a new product object and load with data from row
-        var p = new Product
+        
+        var product = new Product
         {
             ProductId = row["ProductID"].ToString(),
             Name = row["Name"].ToString(),
@@ -53,7 +53,7 @@ public partial class Order : Page
             UnitPrice = (decimal) row["UnitPrice"],
             ImageFile = row["ImageFile"].ToString()
         };
-        return p;
+        return product;
     }
 
 
@@ -68,11 +68,9 @@ public partial class Order : Page
         {
             return;
         }
-        //get cart from session state and selected item from cart
         var cart = CartItemList.GetCart();
         var cartItem = cart[this._selectedProduct.ProductId];
 
-        //if item isn't in cart, add it; otherwise, increase its quantity
         if (cartItem == null)
         {
             cart.AddItem(this._selectedProduct, Convert.ToInt32(this.txtQuantity.Text));
