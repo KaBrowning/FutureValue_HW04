@@ -1,11 +1,12 @@
 ﻿
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Web.UI;
 
 public partial class Order : System.Web.UI.Page
 {
-    private Product selectedProduct;
+    private Product _selectedProduct;
 
     /// <summary>
     /// Handles the Load event of the Page control.
@@ -17,12 +18,12 @@ public partial class Order : System.Web.UI.Page
         //bind drop-down list on first load
         //get and show product on every load
         if (!IsPostBack) this.ddlProducts.DataBind();
-        this.selectedProduct = this.GetSelectedProduct();
-        this.lblName.Text = this.selectedProduct.Name;
-        this.lblShortDescription.Text = this.selectedProduct.ShortDescription;
-        this.lblLongDescription.Text = this.selectedProduct.LongDescription;
-        this.lblUnitPrice.Text = this.selectedProduct.UnitPrice.ToString("c") + "each";
-        this.imgProduct.ImageUrl = "Images/Products/" + this.selectedProduct.ImageFile;
+        this._selectedProduct = this.GetSelectedProduct();
+        this.lblName.Text = this._selectedProduct.Name;
+        this.lblShortDescription.Text = this._selectedProduct.ShortDescription;
+        this.lblLongDescription.Text = this._selectedProduct.LongDescription;
+        this.lblUnitPrice.Text = this._selectedProduct.UnitPrice.ToString("c") + " each";
+        this.imgProduct.ImageUrl = "Images/Products/" + this._selectedProduct.ImageFile;
     }
 
     /// <summary>
@@ -49,5 +50,33 @@ public partial class Order : System.Web.UI.Page
             ImageFile = row["ImageFile"].ToString()
         };
         return p;
+    }
+
+
+    /// <summary>
+    /// Handles the Click event of the btnAdd control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    protected void btnAdd_Click(object sender, System.EventArgs e)
+    {
+        if (!Page.IsValid)
+        {
+            return;
+        }
+        //get cart from session state and selected item from cart
+        var cart = CartItemList.GetCart();
+        var cartItem = cart[this._selectedProduct.ProductId];
+
+        //if item isn't in cart, add it; otherwise, increase its quantity
+        if (cartItem == null)
+        {
+            cart.AddItem(this._selectedProduct, Convert.ToInt32(this.txtQuantity.Text));
+        }
+        else
+        {
+            cartItem.AddQuantity(Convert.ToInt32(this.txtQuantity.Text));
+        }
+        Response.Redirect("Cart.aspx");
     }
 }
