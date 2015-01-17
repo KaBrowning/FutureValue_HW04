@@ -61,4 +61,32 @@ public partial class Cart : System.Web.UI.Page
             this.lblMessage.Text = "Please select an item to remove.";
         }
     }
+
+
+    /// <summary>
+    /// Handles the Click event of the btnEmpty control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    protected void btnEmpty_Click(object sender, System.EventArgs e)
+    {
+        //if cart has items, clear both cart and list control
+        if (this._cart.Count <= 0)
+        {
+            return;
+        }
+        this._cart.Clear();
+        this.lstCart.Items.Clear();
+    }
+
+
+    /// <summary>
+    /// Handles the Click event of the btnCheckOut control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    protected void btnCheckOut_Click(object sender, System.EventArgs e)
+    {
+        this.lblMessage.Text = "Sorry, that function hasn't been implemented yet.";
+    }
 }
