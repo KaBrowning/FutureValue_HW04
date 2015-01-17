@@ -1,10 +1,18 @@
+using System.Diagnostics;
+
 /// <summary>
-/// 
+/// Gets and sets the product and the quantity of that product and displays the result in the cart.
 /// </summary>
 /// <author>Kathryn Browning</author>
 /// <version>January 17, 2015</version>
 public class CartItem
 {
+    private Product _product;
+    private int _quantity;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CartItem"/> class.
+    /// </summary>
     public CartItem() {}
 
     /// <summary>
@@ -18,9 +26,37 @@ public class CartItem
         this.Quantity = quantity;
     }
 
-    //TODO FIX
-    public Product Product { get; set; }
-    public int Quantity { get; set; }
+    /// <summary>
+    /// Gets or sets the product.
+    /// </summary>
+    /// <value>
+    /// The product.
+    /// </value>
+    public Product Product
+    {
+        get { return this._product; }
+        set
+        {
+            Trace.Assert(value != null, "Invalid Product.");
+            this._product = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the quantity.
+    /// </summary>
+    /// <value>
+    /// The quantity.
+    /// </value>
+    public int Quantity
+    {
+        get { return this._quantity; }
+        set
+        {
+            Trace.Assert(true, "Invalid Quantity of Item.");
+            this._quantity = value;
+        }
+    }
 
     /// <summary>
     /// Adds the quantity.
