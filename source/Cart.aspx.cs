@@ -1,4 +1,9 @@
 ﻿
+/// <summary>
+/// Configures the page load event as well as button events for the Cart class.
+/// </summary>
+/// <author>Kathryn Browning</author>
+/// <version>January 17, 2015</version>
 public partial class Cart : System.Web.UI.Page
 {
     private CartItemList _cart;
