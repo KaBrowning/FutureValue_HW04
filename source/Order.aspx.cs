@@ -1,10 +1,14 @@
 ﻿
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Web.UI;
 
-public partial class Order : System.Web.UI.Page
+/// <summary>
+/// Creates the page load event as well as button click events for Order.aspx
+/// </summary>
+/// <author>Kathryn Browning</author>
+/// <version>January 17, 2015</version>
+public partial class Order : Page
 {
     private Product _selectedProduct;
 
@@ -13,7 +17,7 @@ public partial class Order : System.Web.UI.Page
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    protected void Page_Load(object sender, System.EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
     {
         //bind drop-down list on first load
         //get and show product on every load
@@ -37,7 +41,7 @@ public partial class Order : System.Web.UI.Page
             this.SqlDataSource.Select(DataSourceSelectArguments.Empty);
         productsTable.RowFilter = string.Format("ProductID = '{0}'",
             this.ddlProducts.SelectedValue);
-        var row = (DataRowView) productsTable[0];
+        var row = productsTable[0];
 
         //create a new product object and load with data from row
         var p = new Product
@@ -58,7 +62,7 @@ public partial class Order : System.Web.UI.Page
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    protected void btnAdd_Click(object sender, System.EventArgs e)
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
         if (!Page.IsValid)
         {
