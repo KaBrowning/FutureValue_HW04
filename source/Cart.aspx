@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Browning HW04 Cart</title>
-    <link href="Styles/Main.css" rel="stylesheet" />
-    <link href="Styles/Cart.css" rel="stylesheet" />
+    <link href="Styles/Main.css" rel="stylesheet" type="text/css"/>
+    <link href="Styles/Cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <header>
@@ -17,14 +17,22 @@
             <h1>Your shopping cart</h1>
             <asp:ListBox ID="lstCart" runat="server"></asp:ListBox>
             <div id="cartbuttons">
-                <asp:Button ID="btnRemove" runat="server" Text="Remove Item" CssClass="button" OnClick="btnRemove_Click" /><br />
-                <asp:Button ID="btnEmpty" runat="server" Text="Empty Cart" CssClass="button" OnClick="btnEmpty_Click" />
+                <asp:Button ID="btnRemove" runat="server" Text="Remove Item" 
+                    CssClass="button" OnClick="btnRemove_Click" /><br />
+                <asp:Button ID="btnEmpty" runat="server" Text="Empty Cart" 
+                    CssClass="button" OnClick="btnEmpty_Click" />
             </div>
             <div id="shopbuttons">
-                <asp:Button ID="btnContinue" runat="server" Text="Continue Shopping" CssClass="button" PostBackUrl="~/Order.aspx" />
-                <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" CssClass="button" OnClick="btnCheckOut_Click" />
+                <asp:Button ID="btnContinue" runat="server" 
+                    Text="Continue Shopping" CssClass="button" 
+                    PostBackUrl="~/Order.aspx" />
+                <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" 
+                    CssClass="button" OnClick="btnCheckOut_Click" />
             </div>
-            <asp:Label ID="lblMessage" runat="server" CssClass="button"></asp:Label>
+            <p id="message">
+                <asp:Label ID="lblMessage" runat="server" 
+                    EnableViewState="False"></asp:Label>
+            </p>
         </form>
     </section>
 </body>
